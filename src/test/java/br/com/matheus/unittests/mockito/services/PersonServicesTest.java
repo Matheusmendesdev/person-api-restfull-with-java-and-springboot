@@ -58,8 +58,35 @@ class PersonServicesTest {
 
     @Test
     void findAll() {
-    }
+        List<Person> list = input.mockEntityList();
 
+        when(repository.findAll()).thenReturn(list);
+
+        var people = service.findAll();
+        assertNotNull(people);
+        assertEquals(14, people.size());
+
+        var personOne = people.get(1);
+
+        assertNotNull(personOne.getKey());
+        assertNotNull(personOne.getLinks());
+        assertTrue(personOne.toString().contains("links: [</api/person/v1/1>;rel=\"self\"]"));
+        assertEquals("First Name Test1", personOne.getFirstName());
+        assertEquals("Last Name Test1", personOne.getLastName());
+        assertEquals("Addres Test1", personOne.getAddress());
+        assertEquals("Female", personOne.getGender());
+
+        var personSix = people.get(6);
+
+        assertNotNull(personSix.getKey());
+        assertNotNull(personSix.getLinks());
+        assertTrue(personSix.toString().contains("links: [</api/person/v1/6>;rel=\"self\"]"));
+        assertEquals("First Name Test6", personSix.getFirstName());
+        assertEquals("Last Name Test6", personSix.getLastName());
+        assertEquals("Addres Test6", personSix.getAddress());
+        assertEquals("Male", personSix.getGender());
+
+    }
 
     @Test
     void testCreate() {
