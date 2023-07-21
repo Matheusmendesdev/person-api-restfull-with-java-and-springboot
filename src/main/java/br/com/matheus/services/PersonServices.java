@@ -3,6 +3,7 @@ package br.com.matheus.services;
 import br.com.matheus.controllers.PersonController;
 import br.com.matheus.data.vo.v1.PersonVO;
 import br.com.matheus.exceptions.ResourceNotFoundException;
+import br.com.matheus.exceptions.ResourceObjectNullException;
 import br.com.matheus.mapper.DozerMapper;
 import br.com.matheus.model.Person;
 import br.com.matheus.repository.PersonRepository;
@@ -46,6 +47,8 @@ public class PersonServices {
 
     public PersonVO create(PersonVO person) {
 
+        if (person == null) throw new ResourceObjectNullException();
+
         logger.info("Creating one person!");
         var entity = DozerMapper.parseObject(person, Person.class);
         var vo =  DozerMapper.parseObject(repository.save(entity), PersonVO.class);
@@ -54,6 +57,8 @@ public class PersonServices {
     }
 
     public PersonVO update(PersonVO person) {
+
+        if (person == null) throw new ResourceObjectNullException();
 
         logger.info("Updating one person!");
 
