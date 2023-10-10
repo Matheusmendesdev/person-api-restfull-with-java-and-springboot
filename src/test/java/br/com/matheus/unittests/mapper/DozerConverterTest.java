@@ -3,6 +3,7 @@ package br.com.matheus.unittests.mapper;
 import br.com.matheus.data.vo.v1.PersonVO;
 import br.com.matheus.mapper.DozerMapper;
 import br.com.matheus.model.Person;
+import br.com.matheus.unittests.mapper.mocks.MockBook;
 import br.com.matheus.unittests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
