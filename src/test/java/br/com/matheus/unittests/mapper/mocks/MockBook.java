@@ -1,13 +1,11 @@
 package br.com.matheus.unittests.mapper.mocks;
 
-import br.com.matheus.data.vo.v1.BookVO;
-import br.com.matheus.data.vo.v1.PersonVO;
-import br.com.matheus.model.Book;
-import br.com.matheus.model.Person;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import br.com.matheus.data.vo.v1.BookVO;
+import br.com.matheus.model.Book;
 
 public class MockBook {
     public Book mockEntity() {

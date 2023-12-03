@@ -1,6 +1,7 @@
 package br.com.matheus.exceptions.handler;
 
 import br.com.matheus.exceptions.ExceptionResponse;
+import br.com.matheus.exceptions.InvalidJwtAuthenticationException;
 import br.com.matheus.exceptions.ResourceNotFoundException;
 import br.com.matheus.exceptions.ResourceObjectNullException;
 import org.springframework.http.HttpStatus;
@@ -38,5 +39,13 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
                 new Date(), ex.getMessage(), request.getDescription(false)
         );
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidJwtAuthenticationException.class)
+    public final ResponseEntity<ExceptionResponse> handlerInvalidJwtAuthenticationException(Exception ex, WebRequest request){
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+                new Date(), ex.getMessage(), request.getDescription(false)
+        );
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
     }
 }

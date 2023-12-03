@@ -1,16 +1,14 @@
 package br.com.matheus.unittests.mockito.services;
 
-import br.com.matheus.data.vo.v1.BookVO;
-import br.com.matheus.data.vo.v1.PersonVO;
-import br.com.matheus.exceptions.ResourceObjectNullException;
-import br.com.matheus.model.Book;
-import br.com.matheus.model.Person;
-import br.com.matheus.repository.BookRepository;
-import br.com.matheus.repository.PersonRepository;
-import br.com.matheus.services.BookServices;
-import br.com.matheus.services.PersonServices;
-import br.com.matheus.unittests.mapper.mocks.MockBook;
-import br.com.matheus.unittests.mapper.mocks.MockPerson;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -20,11 +18,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import br.com.matheus.data.vo.v1.BookVO;
+import br.com.matheus.exceptions.ResourceObjectNullException;
+import br.com.matheus.model.Book;
+import br.com.matheus.repository.BookRepository;
+import br.com.matheus.services.BookServices;
+import br.com.matheus.unittests.mapper.mocks.MockBook;
 
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 @ExtendWith(MockitoExtension.class)
