@@ -8,6 +8,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -90,14 +91,15 @@ public class JwtTokenProvider {
         return null;
     }
 
-    public boolean validateToken(String token) throws InvalidJwtAuthenticationException {
+    @SneakyThrows
+    public boolean validateToken(String token) {
         DecodedJWT decodedJWT = decodedToken(token);
         try {
             if(decodedJWT.getExpiresAt().before(new Date())){
                 return false;
             }
             return true;
-        } catch (Exception e){
+        }catch (Exception e){
             throw new InvalidJwtAuthenticationException("Expired or invalid JWT Token!");
         }
     }
